@@ -51,36 +51,39 @@
 }
 
 .post-btn-view {
-  color: var(--purple);
+  color: white;
+  background: var(--purple);
   border: 1px solid var(--purple);
 }
 
 .post-btn-view:hover,
 .post-btn-view:focus {
-  color: white;
-  background: var(--purple);
+  color: var(--purple);
+  background: white;
 }
 
 .post-btn-edit {
-  color: var(--yellow);
+  color: white;
   border: 1px solid var(--yellow);
+  background: var(--yellow);
 }
 
 .post-btn-edit:hover,
 .post-btn-edit:focus {
-  color: white;
-  background: var(--yellow);
+  color: var(--yellow);
+  background: white;
 }
 
 .post-btn-delete {
-  color: red;
+  color: white;
   border: 1px solid red;
+  background: crimson;
 }
 
 .post-btn-delete:hover,
 .post-btn-delete:focus {
-  color: white;
-  background: red;
+  color: red;
+  background: white;
 }
 
 @media screen and (min-width: 500px) {

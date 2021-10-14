@@ -74,7 +74,11 @@ const PostPage = () => {
     return <Error message={error.message} />;
   }
   if (loading) {
-    return <Loader />;
+    return (
+      <div className="center-container">
+        <Loader />
+      </div>
+    );
   }
   if (data) {
     return (

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Route } from 'react-router';
+import { Route, useHistory } from 'react-router';
 
 import Navbar from './components/nav/navbar';
 import LoginPage from './pages/loginPage/loginPage';
@@ -11,6 +11,8 @@ function App() {
   const [isAuth, setIsAuth] = useState(false);
   const [loggingIn, setLoggingin] = useState(false);
   const [loginError, setLoginError] = useState(null);
+
+  const history = useHistory();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -57,6 +59,7 @@ function App() {
     localStorage.removeItem('token');
     localStorage.removeItem('expiry');
     setIsAuth(false);
+    history.push('/');
   };
 
   if (loading) {
