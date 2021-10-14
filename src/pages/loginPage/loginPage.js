@@ -1,11 +1,12 @@
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
+import Loader from '../../components/loader/loader';
 import TextInput from '../../components/textinput/textinput';
 
 import './loginPage.css';
 
-const LoginPage = ({ login, error }) => {
+const LoginPage = ({ login, error, loggingIn }) => {
   return (
     <section className="login-container">
       <Formik
@@ -38,9 +39,12 @@ const LoginPage = ({ login, error }) => {
             type="text"
             placeholder="password"
           />
-          <button className="auth-form-btn" type="submit">
-            LogIn
-          </button>
+          {!loggingIn && (
+            <button className="auth-form-btn" type="submit">
+              LogIn
+            </button>
+          )}
+          {loggingIn && <Loader />}
         </Form>
       </Formik>
     </section>

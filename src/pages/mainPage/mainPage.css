@@ -1,0 +1,8 @@
+.main-container {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 50px;
+  padding: 3%;
+  max-width: 1000px;
+  margin: auto;
+}

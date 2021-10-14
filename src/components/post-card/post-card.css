@@ -1,0 +1,92 @@
+.post {
+  display: grid;
+  gap: 20px;
+  width: 100%;
+  grid-template-columns: 1fr;
+}
+
+.post-image {
+  min-height: 150px;
+  height: 100%;
+  width: 100%;
+  background: red;
+  object-fit: contain;
+}
+
+.post-desc {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 30ch;
+}
+
+.post-title {
+  margin-top: 0;
+}
+
+.post-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 500px;
+}
+
+.post-btn {
+  padding: 8px 12px;
+  background: white;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.post-btn-view {
+  color: var(--purple);
+  border: 1px solid var(--purple);
+}
+
+.post-btn-view:hover,
+.post-btn-view:focus {
+  color: white;
+  background: var(--purple);
+}
+
+.post-btn-edit {
+  color: var(--yellow);
+  border: 1px solid var(--yellow);
+}
+
+.post-btn-edit:hover,
+.post-btn-edit:focus {
+  color: white;
+  background: var(--yellow);
+}
+
+.post-btn-delete {
+  color: red;
+  border: 1px solid red;
+}
+
+.post-btn-delete:hover,
+.post-btn-delete:focus {
+  color: white;
+  background: red;
+}
+
+@media screen and (min-width: 500px) {
+  .post {
+    grid-template-columns: repeat(12, 1fr);
+  }
+  .post-image {
+    grid-column: span 4;
+  }
+
+  .post-detail {
+    grid-column: span 8;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .post-desc {
+    width: 45ch;
+  }
+}

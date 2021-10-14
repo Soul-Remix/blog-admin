@@ -3,9 +3,11 @@ import { Route } from 'react-router';
 
 import Navbar from './components/nav/navbar';
 import LoginPage from './pages/loginPage/loginPage';
+import MainPage from './pages/mainPage/mainPage';
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
+  const [loggingIn, setLoggingin] = useState(false);
   const [loginError, setLoginError] = useState(null);
 
   useEffect(() => {
@@ -23,6 +25,7 @@ function App() {
   }, []);
 
   const login = async (values) => {
+    setLoggingin(true);
     const res = await fetch(
       'https://guarded-bayou-18266.herokuapp.com/api/v1/auth/login',
       {
@@ -34,12 +37,14 @@ function App() {
     const data = await res.json();
     if (res.status !== 200) {
       setLoginError(data.message);
+      setLoggingin(false);
       return;
     } else {
       setIsAuth(true);
       localStorage.setItem('token', data.token);
       const expiry = Date.now() + 7200000;
       localStorage.setItem('expiry', expiry);
+      setLoggingin(false);
     }
   };
 
@@ -50,11 +55,19 @@ function App() {
   };
 
   return (
-    <Route>
+    <>
       <Navbar isAuth={isAuth} logout={logout} />
-      {!isAuth && <LoginPage login={login} error={loginError} />}
-      {isAuth && <p>hello</p>}
-    </Route>
+      {!isAuth && (
+        <LoginPage login={login} error={loginError} loggingIn={loggingIn} />
+      )}
+      {isAuth && (
+        <>
+          <Route exact path="/">
+            <MainPage />
+          </Route>
+        </>
+      )}
+    </>
   );
 }
 
