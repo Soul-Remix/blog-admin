@@ -2,7 +2,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 import './navbar.css';
 
-const Navbar = ({ isAuth }) => {
+const Navbar = ({ isAuth, logout }) => {
   return (
     <nav>
       <h1 className="logo">
@@ -16,7 +16,9 @@ const Navbar = ({ isAuth }) => {
             </NavLink>
           </li>
           <li className="nav-item">
-            <button className="nav-btn">Logout</button>
+            <button className="nav-btn" onClick={logout}>
+              Logout
+            </button>
           </li>
         </ul>
       )}

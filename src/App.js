@@ -6,7 +6,6 @@ import LoginPage from './pages/loginPage/loginPage';
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
-  const [user, setUser] = useState(null);
   const [loginError, setLoginError] = useState(null);
 
   useEffect(() => {
@@ -44,9 +43,15 @@ function App() {
     }
   };
 
+  const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expiry');
+    setIsAuth(false);
+  };
+
   return (
     <Route>
-      <Navbar isAuth={isAuth} />
+      <Navbar isAuth={isAuth} logout={logout} />
       {!isAuth && <LoginPage login={login} error={loginError} />}
       {isAuth && <p>hello</p>}
     </Route>
