@@ -33,6 +33,39 @@ const PostPage = () => {
     }
   };
 
+  const deleteComment = async (commentId) => {
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(
+        `https://guarded-bayou-18266.herokuapp.com/api/v1/post/${id}/comment`,
+        {
+          method: 'DELETE',
+          headers: {
+            commentId: commentId,
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const comment = await res.json();
+      if (res.status === 200) {
+        const arr = data.comments.filter((x) => {
+          if (x._id !== comment.comment._id) {
+            return x;
+          }
+        });
+        const newData = {
+          ...data,
+          comments: arr,
+        };
+        setData(newData);
+      } else {
+        console.log(data.message);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     fetchpost();
   }, []);
@@ -48,7 +81,7 @@ const PostPage = () => {
       <>
         <Post data={data} />
         <div className="comments-container" id="comments">
-          <CommentCard comments={data.comments} />
+          <CommentCard comments={data.comments} handleDelete={deleteComment} />
         </div>
       </>
     );

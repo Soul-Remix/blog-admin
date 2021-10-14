@@ -28,3 +28,17 @@
   padding: 15px;
   margin: 0;
 }
+
+.comment-delete-btn {
+  padding: 5px 10px;
+  color: red;
+  background-color: white;
+  border: 1px solid red;
+  margin: 8px 15px;
+  cursor: pointer;
+}
+
+.comment-delete-btn:hover {
+  color: white;
+  background-color: crimson;
+}

@@ -1,6 +1,6 @@
 import './comment-card.css';
 
-const CommentCard = ({ comments }) => {
+const CommentCard = ({ comments, handleDelete }) => {
   const commentsArr = comments.map((comment) => {
     return (
       <div className="comment-card" key={comment._id}>
@@ -9,6 +9,12 @@ const CommentCard = ({ comments }) => {
           <small className="comment-date">{comment.createdAt}</small>
         </div>
         <p className="comment-body">{comment.description}</p>
+        <button
+          className="comment-delete-btn"
+          onClick={() => handleDelete(comment._id)}
+        >
+          Delete
+        </button>
       </div>
     );
   });

@@ -34,7 +34,7 @@ const MainPage = () => {
     return (
       <main className="main-container">
         {posts.map((x) => {
-          return <PostCard post={x} />;
+          return <PostCard post={x} key={x._id} />;
         })}
       </main>
     );
