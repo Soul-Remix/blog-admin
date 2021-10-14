@@ -1,11 +1,18 @@
-.post {
+.post-card {
   display: grid;
   gap: 20px;
   width: 100%;
   grid-template-columns: 1fr;
+  border: 1px solid black;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
-.post-image {
+.post-card-detail {
+  padding: 10px;
+}
+
+.post-card-image {
   min-height: 150px;
   height: 100%;
   width: 100%;
@@ -13,25 +20,29 @@
   object-fit: contain;
 }
 
-.post-desc {
+.post-card-desc {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   width: 30ch;
 }
 
-.post-title {
+.post-card-title {
   margin-top: 0;
 }
 
-.post-buttons {
+.post-card-view {
+  color: red;
+}
+
+.post-card-buttons {
   display: flex;
   justify-content: space-around;
   align-items: center;
   max-width: 500px;
 }
 
-.post-btn {
+.post-card-btn {
   padding: 8px 12px;
   background: white;
   text-decoration: none;
@@ -73,20 +84,20 @@
 }
 
 @media screen and (min-width: 500px) {
-  .post {
+  .post-card {
     grid-template-columns: repeat(12, 1fr);
   }
-  .post-image {
+  .post-card-image {
     grid-column: span 4;
   }
 
-  .post-detail {
+  .post-card-detail {
     grid-column: span 8;
   }
 }
 
 @media screen and (min-width: 768px) {
-  .post-desc {
+  .post-card-desc {
     width: 45ch;
   }
 }

@@ -4,23 +4,32 @@ import './post-card.css';
 
 const PostCard = ({ post }) => {
   return (
-    <section className="post" key={post._id}>
-      <img href={post.image} alt="" className="post-image" />
-      <div className="post-detail">
-        <h2 className="post-title">{post.title}</h2>
-        <p className="post-desc">{post.description}</p>
-        <p>Views: {post.views}</p>
-        <div className="post-buttons">
-          <Link className="post-btn post-btn-view" to={`/post/${post._id}`}>
+    <section className="post-card" key={post._id}>
+      <img href={post.image} alt="" className="post-card-image" />
+      <div className="post-card-detail">
+        <h2 className="post-card-title">{post.title}</h2>
+        <p className="post-card-desc">{post.description}</p>
+        <p>
+          Views: <span className="post-card-view">{post.views}</span>
+        </p>
+        <p>
+          Comments:{' '}
+          <span className="post-card-view">{post.comments.length}</span>
+        </p>
+        <div className="post-card-buttons">
+          <Link
+            className="post-card-btn post-btn-view"
+            to={`/post/${post._id}`}
+          >
             View
           </Link>
           <Link
-            className="post-btn post-btn-edit"
+            className="post-card-btn post-btn-edit"
             to={`/post/${post._id}/edit`}
           >
             Edit
           </Link>
-          <button className="post-btn post-btn-delete">Delete</button>
+          <button className="post-card-btn post-btn-delete">Delete</button>
         </div>
       </div>
     </section>

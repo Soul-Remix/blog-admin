@@ -4,8 +4,10 @@ import { Route } from 'react-router';
 import Navbar from './components/nav/navbar';
 import LoginPage from './pages/loginPage/loginPage';
 import MainPage from './pages/mainPage/mainPage';
+import PostPage from './pages/postPage/postPage';
 
 function App() {
+  const [loading, setLoading] = useState(true);
   const [isAuth, setIsAuth] = useState(false);
   const [loggingIn, setLoggingin] = useState(false);
   const [loginError, setLoginError] = useState(null);
@@ -14,13 +16,16 @@ function App() {
     const token = localStorage.getItem('token');
     const expiryDate = localStorage.getItem('expiry');
     if (!token) {
+      setLoading(false);
       return;
     } else if (expiryDate < Date.now()) {
       localStorage.removeItem('token');
       localStorage.removeItem('expiry');
+      setLoading(false);
       return;
     } else {
       setIsAuth(true);
+      setLoading(false);
     }
   }, []);
 
@@ -54,21 +59,32 @@ function App() {
     setIsAuth(false);
   };
 
-  return (
-    <>
-      <Navbar isAuth={isAuth} logout={logout} />
-      {!isAuth && (
+  if (loading) {
+    return (
+      <>
+        <Navbar isAuth={isAuth} logout={logout} />
+      </>
+    );
+  } else if (!isAuth) {
+    return (
+      <>
+        <Navbar isAuth={isAuth} logout={logout} />
         <LoginPage login={login} error={loginError} loggingIn={loggingIn} />
-      )}
-      {isAuth && (
-        <>
-          <Route exact path="/">
-            <MainPage />
-          </Route>
-        </>
-      )}
-    </>
-  );
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Navbar isAuth={isAuth} logout={logout} />
+        <Route exact path="/">
+          <MainPage />
+        </Route>
+        <Route path="/post/:id">
+          <PostPage />
+        </Route>
+      </>
+    );
+  }
 }
 
 export default App;

@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+
 import PostCard from '../../components/post-card/post-card';
+import Error from '../../components/error/error';
 
 import './mainPage.css';
 
@@ -27,7 +29,7 @@ const MainPage = () => {
   }, []);
 
   if (error) {
-    return <p>error</p>;
+    return <Error message={error.message} />;
   } else {
     return (
       <main className="main-container">
