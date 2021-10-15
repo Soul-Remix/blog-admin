@@ -28,13 +28,42 @@ const MainPage = () => {
     fetchPosts();
   }, []);
 
+  const handlePostDelete = async (postId) => {
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(
+        `https://guarded-bayou-18266.herokuapp.com/api/v1/posts`,
+        {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            postId,
+          },
+        }
+      );
+      const data = await res.json();
+      if (res.status !== 200) {
+        setError(data);
+        return;
+      } else {
+        const arr = posts.filter((x) => x._id !== data.post._id);
+        setPosts(arr);
+        return;
+      }
+    } catch (err) {
+      setError(err);
+    }
+  };
+
   if (error) {
     return <Error message={error.message} />;
   } else {
     return (
       <main className="main-container">
         {posts.map((x) => {
-          return <PostCard post={x} key={x._id} />;
+          return (
+            <PostCard post={x} key={x._id} deletePost={handlePostDelete} />
+          );
         })}
       </main>
     );

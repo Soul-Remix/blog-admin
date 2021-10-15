@@ -36,7 +36,7 @@ const LoginPage = ({ login, error, loggingIn }) => {
           <TextInput
             label="password"
             name="password"
-            type="text"
+            type="password"
             placeholder="password"
           />
           {!loggingIn && (

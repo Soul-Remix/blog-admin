@@ -26,6 +26,7 @@
   z-index: 30;
   display: flex;
   flex-flow: column wrap;
+  width: clamp(50%, 20rem, 30rem);
 }
 
 .error-button {

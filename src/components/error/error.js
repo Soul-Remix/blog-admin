@@ -1,10 +1,8 @@
-import { useHistory } from 'react-router';
 import './error.css';
 
 const Error = ({ message }) => {
-  const history = useHistory();
   const onBtnClick = () => {
-    history.push('/');
+    window.location.reload();
   };
 
   return (

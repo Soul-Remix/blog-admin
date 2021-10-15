@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import './post-card.css';
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, deletePost }) => {
   return (
     <section className="post-card" key={post._id}>
       <img href={post.image} alt="" className="post-card-image" />
@@ -29,7 +29,12 @@ const PostCard = ({ post }) => {
           >
             Edit
           </Link>
-          <button className="post-card-btn post-btn-delete">Delete</button>
+          <button
+            className="post-card-btn post-btn-delete"
+            onClick={() => deletePost(post._id)}
+          >
+            Delete
+          </button>
         </div>
       </div>
     </section>
