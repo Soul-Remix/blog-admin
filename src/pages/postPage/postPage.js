@@ -48,16 +48,7 @@ const PostPage = () => {
       );
       const comment = await res.json();
       if (res.status === 200) {
-        const arr = data.comments.filter((x) => {
-          if (x._id !== comment.comment._id) {
-            return x;
-          }
-        });
-        const newData = {
-          ...data,
-          comments: arr,
-        };
-        setData(newData);
+        window.location.reload();
       } else {
         console.log(data.message);
       }

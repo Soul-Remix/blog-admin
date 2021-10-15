@@ -14,10 +14,6 @@ const CreatePage = ({ title, description, editing, id, close }) => {
   const [error, setError] = useState(null);
   const history = useHistory();
 
-  if (description) {
-    description = description.split('\\n').join('');
-  }
-
   const handleSubmit = async (values) => {
     try {
       setLoading(true);
