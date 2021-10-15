@@ -5,10 +5,13 @@ import PostCard from '../../components/post-card/post-card';
 import Error from '../../components/error/error';
 
 import './mainPage.css';
+import CreatePage from '../createPage/createPage';
 
 const MainPage = () => {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
+  const [editing, setEditing] = useState(false);
+  const [post, setPost] = useState({});
   const fetchPosts = async () => {
     try {
       const res = await fetch(
@@ -56,18 +59,48 @@ const MainPage = () => {
     }
   };
 
+  const handlePostEdit = (post) => {
+    setPost({ ...post });
+    setEditing(true);
+  };
+
+  const handleCloseEdit = () => {
+    setEditing(false);
+    setPost({});
+  };
+
   if (error) {
     return <Error message={error.message} />;
   } else {
     return (
-      <main className="main-container">
-        <Link to="/create">Create Post</Link>
-        {posts.map((x) => {
-          return (
-            <PostCard post={x} key={x._id} deletePost={handlePostDelete} />
-          );
-        })}
-      </main>
+      <>
+        {editing && (
+          <CreatePage
+            title={post.title}
+            description={post.description}
+            editing={true}
+            id={post._id}
+            close={handleCloseEdit}
+          />
+        )}
+        {!editing && (
+          <main className="main-container">
+            <Link to="/create" className="main-create-link">
+              Create Post
+            </Link>
+            {posts.map((x) => {
+              return (
+                <PostCard
+                  post={x}
+                  key={x._id}
+                  deletePost={handlePostDelete}
+                  editPost={handlePostEdit}
+                />
+              );
+            })}
+          </main>
+        )}
+      </>
     );
   }
 };

@@ -2,10 +2,14 @@ import { Link } from 'react-router-dom';
 
 import './post-card.css';
 
-const PostCard = ({ post, deletePost }) => {
+const PostCard = ({ post, deletePost, editPost }) => {
   return (
     <section className="post-card" key={post._id}>
-      <img href={post.image} alt="" className="post-card-image" />
+      <img
+        src={`https://guarded-bayou-18266.herokuapp.com/${post.image}`}
+        alt=""
+        className="post-card-image"
+      />
       <div className="post-card-detail">
         <h2 className="post-card-title">{post.title}</h2>
         <p className="post-card-desc">{post.description}</p>
@@ -23,12 +27,12 @@ const PostCard = ({ post, deletePost }) => {
           >
             View
           </Link>
-          <Link
+          <button
             className="post-card-btn post-btn-edit"
-            to={`/post/edit/${post._id}`}
+            onClick={() => editPost(post)}
           >
             Edit
-          </Link>
+          </button>
           <button
             className="post-card-btn post-btn-delete"
             onClick={() => deletePost(post._id)}

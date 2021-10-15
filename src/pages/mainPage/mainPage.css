@@ -6,3 +6,20 @@
   max-width: 1000px;
   margin: auto;
 }
+
+.main-create-link {
+  text-decoration: none;
+  text-align: center;
+  padding: 10px 20px;
+  color: white;
+  background: var(--purple);
+  width: 10rem;
+  margin: auto;
+  border: none;
+  border-radius: 5px;
+}
+
+.main-create-link:hover,
+.main-create-link:focus {
+  color: var(--yellow);
+}

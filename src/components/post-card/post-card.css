@@ -16,8 +16,7 @@
   min-height: 150px;
   height: 100%;
   width: 100%;
-  background: red;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .post-card-desc {

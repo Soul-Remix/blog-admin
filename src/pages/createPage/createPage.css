@@ -8,8 +8,15 @@
   z-index: 10;
 }
 
+.hover-container {
+  background: rgba(0, 0, 0, 0.5);
+  margin: 0;
+  padding: 30px;
+}
+
 .create-form {
   width: 90%;
+  max-width: 800px;
   margin: auto;
   margin-bottom: 30px;
   padding: 1rem;
@@ -17,11 +24,17 @@
   border-radius: 5px;
   display: flex;
   flex-flow: column wrap;
+  background: white;
+  overflow: hidden;
+}
+
+.hover-container .create-form {
+  width: 100%;
 }
 
 @media (min-width: 768px) {
   .create-form {
-    width: 40rem;
+    min-width: 40rem;
   }
 }
 
@@ -68,6 +81,13 @@
   background: #ffc2c2;
 }
 
+.create-form-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
 .create-form-btn {
   margin: auto;
   margin-top: 1.5rem;
@@ -82,6 +102,16 @@
 
 .create-form-btn:hover {
   color: var(--yellow);
+}
+
+.create-form-close {
+  background: crimson;
+  border-color: red;
+}
+
+.create-form-close:hover {
+  color: red;
+  background: white;
 }
 
 .create-form-p {

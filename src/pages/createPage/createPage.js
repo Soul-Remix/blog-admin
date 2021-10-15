@@ -9,10 +9,14 @@ import Loader from '../../components/loader/loader';
 
 import './createPage.css';
 
-const CreatePage = ({ title, description, editing, id }) => {
+const CreatePage = ({ title, description, editing, id, close }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const history = useHistory();
+
+  if (description) {
+    description = description.split('\\n').join('');
+  }
 
   const handleSubmit = async (values) => {
     try {
@@ -21,7 +25,9 @@ const CreatePage = ({ title, description, editing, id }) => {
       const formData = new FormData();
       formData.append('title', values.title);
       formData.append('description', values.description);
-      formData.append('image', values.image);
+      if (values.image) {
+        formData.append('image', values.image);
+      }
       let res;
       if (editing) {
         res = await fetch(
@@ -61,7 +67,11 @@ const CreatePage = ({ title, description, editing, id }) => {
   };
 
   return (
-    <section className="create-container">
+    <section
+      className={
+        editing ? 'create-container hover-container' : 'create-container'
+      }
+    >
       <Formik
         initialValues={{
           title: title || '',
@@ -80,7 +90,9 @@ const CreatePage = ({ title, description, editing, id }) => {
       >
         {(formProps) => (
           <Form className="create-form" encType="multipart/form-data">
-            <h2 className="create-form-header">Create Post</h2>
+            <h2 className="create-form-header">
+              {editing ? 'Edit Post' : 'Create Post'}
+            </h2>
             <TextInput
               label="Title"
               name="title"
@@ -95,7 +107,6 @@ const CreatePage = ({ title, description, editing, id }) => {
               placeholder="Post Image"
               onChange={(event) => {
                 formProps.setFieldValue('image', event.target.files[0]);
-                console.log(event.target.files[0]);
               }}
             />
             <TextField
@@ -104,11 +115,21 @@ const CreatePage = ({ title, description, editing, id }) => {
               placeholder="Post Content"
             />
             {error && <p className="error create-form-p">{error.message}</p>}
-            {!loading && (
-              <button type="submit" className="create-form-btn">
-                Submit
-              </button>
-            )}
+            <div className="create-form-btns">
+              {editing && !loading && (
+                <button
+                  className="create-form-btn create-form-close"
+                  onClick={close}
+                >
+                  Close
+                </button>
+              )}
+              {!loading && (
+                <button type="submit" className="create-form-btn">
+                  Submit
+                </button>
+              )}
+            </div>
             {loading && <Loader />}
           </Form>
         )}
