@@ -25,7 +25,7 @@ const PostCard = ({ post, deletePost }) => {
           </Link>
           <Link
             className="post-card-btn post-btn-edit"
-            to={`/post/${post._id}/edit`}
+            to={`/post/edit/${post._id}`}
           >
             Edit
           </Link>

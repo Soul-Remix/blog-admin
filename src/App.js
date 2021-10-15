@@ -5,6 +5,7 @@ import Navbar from './components/nav/navbar';
 import LoginPage from './pages/loginPage/loginPage';
 import MainPage from './pages/mainPage/mainPage';
 import PostPage from './pages/postPage/postPage';
+import CreatePage from './pages/createPage/createPage';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -84,6 +85,9 @@ function App() {
         </Route>
         <Route path="/post/:id">
           <PostPage />
+        </Route>
+        <Route exact path="/create">
+          <CreatePage />
         </Route>
       </>
     );

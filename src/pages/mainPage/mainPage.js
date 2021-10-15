@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import PostCard from '../../components/post-card/post-card';
 import Error from '../../components/error/error';
@@ -60,6 +61,7 @@ const MainPage = () => {
   } else {
     return (
       <main className="main-container">
+        <Link to="/create">Create Post</Link>
         {posts.map((x) => {
           return (
             <PostCard post={x} key={x._id} deletePost={handlePostDelete} />
